@@ -1,0 +1,31 @@
+package EV3;
+
+import lejos.utility.Delay;
+
+public class Wait {
+
+	/**
+	 * Waits a finite amount of milliseconds. 
+	 * @param milliSeconds
+	 */
+	public static void time(int milliSeconds) {
+		Delay.msDelay(milliSeconds);
+	}
+	
+	/**
+	 * 
+	 * ----------------------------------------------------------
+	 * state: 0 = pressed, 1 = bumped.
+	 * 
+	 * @param buttonSet
+	 * @param state
+	 */
+//	public static void forBrickButtons(Buttons button, int state) {
+//		if(state == 0) {
+//			BrickButtons.waitForPress(button);
+//		}
+//		else if(state == 1){
+//			BrickButtons.waitForBump(button);
+//		}
+//	}
+}

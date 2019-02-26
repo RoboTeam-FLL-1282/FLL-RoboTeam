@@ -10,7 +10,6 @@ import Motion.WhiteLineAlignment;
 import Navigation.SpecialFunctions;
 import Tools.MediumMotors;
 import Tools.Run;
-import Tools.RunsMenu;
 
 public class Run_1 implements Runnable, MediumMotors{
 
@@ -37,25 +36,27 @@ public class Run_1 implements Runnable, MediumMotors{
 						
 		GyroPID.g.reset();
 				
+		
+		// Move to the wall
 		MoveTank.onForCent(100, 100, 40, true);
 		
-		if(!RunsMenu.active) return; //Break point
+
 		
+		// Start PID
 		pid.setBaseSpeed(-400);
 		pid.startPID();// Start moving  with PID.
 		
-		if(!RunsMenu.active) return; //Break point
+
 
 		Wait.time(2500);
 		pid.stopPID();
 		
-		if(!RunsMenu.active) return; //Break point
-				
+
 		BlackLineAlignment.find(-400); // Align on line.
 		WhiteLineAlignment.find(-400);
 		
-		if(!RunsMenu.active) return; //Break point
-		
+
+		// Move towards the solar panel
 		MoveTank.onForCent(-400, -400, 400, true); // Move forwards strongly.
 		
 //		MoveTank.onForCent(200, 200, 200, true);
@@ -64,12 +65,12 @@ public class Run_1 implements Runnable, MediumMotors{
 		
 //		MoveTank.onForCent(-200, -200, 200, true);
 		
-		if(!RunsMenu.active) return; //Break point
-				
+
+		// Rotate medium motor
 		c.onForDegrees(9000, 20000, true); // Start rotating medium motors.
 				
-		if(!RunsMenu.active) return; //Break point
-								
+
+					
 		// Coming back to base:
 		MoveTank.onForCent(200, 200, 200, false);
 				

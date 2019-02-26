@@ -4,7 +4,6 @@ import EV3.BrickButtons;
 import EV3.MoveTank;
 import EV3.Sound;
 import EV3.Wait;
-
 import Motion.BlackLineAlignment;
 import Motion.GyroPID;
 import Motion.WhiteLineAlignment;
@@ -52,7 +51,7 @@ public class Run_2_B implements Runnable, MediumMotors{
 		pid.setTarget(GyroPID.g.angle());
 		pid.setBaseSpeed(-250);
 		pid.startPID();
-		if(!RunsMenu.active) return; // Break point
+		
 		Wait.time(4000);
 		for(int i = -500; i<0; i+=60) {
 			pid.setBaseSpeed(i);
@@ -60,24 +59,24 @@ public class Run_2_B implements Runnable, MediumMotors{
 		}
 		pid.stopPID();
 		
-		if(!RunsMenu.active) return; // Break point
+		
 		
 		t.turnInSpot(20, -100);
 		
 		// Align on line:
 		WhiteLineAlignment.align(-100);
 		MoveTank.off();
-		if(!RunsMenu.active) return; // Break point
+		
 		BlackLineAlignment.align(-100);
-		if(!RunsMenu.active) return; // Break point
+		
 		WhiteLineAlignment.align(100);
-		if(!RunsMenu.active) return; // Break point
+		
 		BlackLineAlignment.align(-100);
-		if(!RunsMenu.active) return; // Break point
+		
 		
 		// A little fetch.
 		MoveTank.onForCent(-100, -100, 90, true);		
-		if(!RunsMenu.active) return; // Break point
+		
 		
 		c.onForSeconds(-1000, 5, true);
 		c.onForSeconds(5000, 6, true);

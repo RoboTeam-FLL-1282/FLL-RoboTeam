@@ -22,12 +22,14 @@ public class RunsMaster {
 		Run_2_A r2a = new Run_2_A(r);
 		Run_2_B r2b = new Run_2_B(r);
 		Run_3 r3 = new Run_3(r);
+		Boom boom = new Boom(r);
 		
 		// Add runs to RunsMenu:
 		r.addRun(r1, "Run 1", r1.pid);
 		r.addRun(r2a, "Run 2 A", r2a.pid);
 		r.addRun(r2b, "Run 2 B", r2b.pid);
 		r.addRun(r3, "Run 3", r3.pid);
+		r.addRun(boom, "Boom!", boom.pid);
 		r.show();
 	}
 	

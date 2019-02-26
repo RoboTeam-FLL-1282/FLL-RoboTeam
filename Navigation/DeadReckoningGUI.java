@@ -26,7 +26,6 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-
 @SuppressWarnings("serial")
 public class DeadReckoningGUI extends SplineGUI implements MouseListener, MouseMotionListener, ButtonListener{
 

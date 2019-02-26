@@ -13,7 +13,6 @@ import Navigation.SpecialFunctions;
 import Navigation.Traveler;
 import Tools.MediumMotors;
 import Tools.Run;
-import Tools.RunsMenu;
 
 public class Run_2_A implements Runnable, MediumMotors{
 
@@ -37,13 +36,12 @@ public class Run_2_A implements Runnable, MediumMotors{
 		pid = new GyroPID(0, 0.3, 0.05, 0.1);
 		pid.setBaseSpeed(-200);
 		
-		if(!RunsMenu.active) return; //Break point
-
 		SpecialFunctions.smiley();
 		Sound.beep(100);
 		BrickButtons.waitForAnyPress();
 		SpecialFunctions.smileyOff();
 
+		// Move to the wall
 		MoveTank.onForCent(250, 250, 100, true);
 		GyroPID.g.recalibrate();		
 		
@@ -51,7 +49,7 @@ public class Run_2_A implements Runnable, MediumMotors{
 		//pid.setTarget(GyroPID.g.angle());
 		pid.startPID();
 		Accelerator.acceleratePID(pid, 0.5, -70, -500, false);
-		if(!RunsMenu.active) return; // Break point
+		
 		Wait.time(2000);
 		for(int i = -500; i<0; i+=30) {
 			pid.setBaseSpeed(i);
@@ -59,119 +57,140 @@ public class Run_2_A implements Runnable, MediumMotors{
 		}
 		pid.stopPID();
 		
-		if(!RunsMenu.active) return; // Break point
+		
 				
 		// Align on line:
 		WhiteLineAlignment.align(-150);
 		MoveTank.off();
-		if(!RunsMenu.active) return; // Break point
+		
 		BlackLineAlignment.align(-100);
-		if(!RunsMenu.active) return; // Break point
+		
 		WhiteLineAlignment.align(100);
-		if(!RunsMenu.active) return; // Break point
+		
 		BlackLineAlignment.align(-100);
-		if(!RunsMenu.active) return; // Break point
+		
 		WhiteLineAlignment.align(100);
 		
 		// A little fetch.
-		if(!RunsMenu.active) return; // Break point
-		MoveTank.onForCent(-70, -70, 150, true);
+		
+		MoveTank.onForCent(-70, -70, 120, true);
 		// Finds black line and moves backwards.
 		
 		// Rotates and moves forwards.
 		t.turnInSpot(100, -200);
-		if(!RunsMenu.active) return; // Break point
-		BlackLineAlignment.find(Sides.LEFT, -100);
-		if(!RunsMenu.active) return; // Break point
+		
+		BlackLineAlignment.find(Sides.RIGHT, -100);
+		
 		MoveTank.onForCent(-100, -100, 90, true);
-		if(!RunsMenu.active) return; // Break point
+		
 		
 		// Align in line.
 		WhiteLineAlignment.align(100);
-		if(!RunsMenu.active) return; // Break point
+		
 		BlackLineAlignment.align(100);
-		if(!RunsMenu.active) return; // Break point
+		
 		WhiteLineAlignment.align(-100);
-		if(!RunsMenu.active) return; // Break point
+		
 		BlackLineAlignment.align(100);
 		
 		// Move to collect the resources.
 		MoveTank.onForCent(-100, -100, 105, true); // -100
-		if(!RunsMenu.active) return; // Break point
+		
 		
 		// A little turn.
 		t.turnInSpot(110, 70);
 		
-		// Coming back to base.
-		MoveTank.onForCent(300, 300, 590, true); // 100
+		MoveTank.onForCent(300, 300, 520, true); // 100
 		
-		if(!RunsMenu.active) return; // Break point
+		Wait.time(500);
 		
-		MoveTank.onForCent(-250, -250, 600, true);
 		
-		if(!RunsMenu.active) return; // Break point
+		// Move towards M06
+		MoveTank.onForCent(-250, -250, 480, true);
 		
-		t.turnInSpot(130, -200);
 		
-		if(!RunsMenu.active) return; // Break point
+		// Turn and move towards the wall
+		t.turnInSpot(125, -200); // Sure?
+		
+		
 
 		MoveTank.onForCent(-300, -300, 100, true);
 
-		if(!RunsMenu.active) return; // Break point
 		
+		// Align
 		WhiteLineAlignment.align(150);
-		
+				
 		t.turnInSpot(15, 200);
 				
-		if(!RunsMenu.active) return; // Break point
 		
-		MoveTank.onForCent(-150, -150, 395, true);
+		// Move and release the big wheels
+		MoveTank.onForCent(-150, -150, 410, true);
 		
-		if(!RunsMenu.active) return; // Break point
+		
 
-		t.turnInSpot(95, 150);
+		t.turnInSpot(102, 100);
 
-		if(!RunsMenu.active) return; // Break point
 		
+		// Move backwards
 		MoveTank.onForCent(300, 300, 440, true);
 		
-		if(!RunsMenu.active) return; // Break point
-
-		MoveTank.onForCent(-200, -200, 100, true);
-
-		if(!RunsMenu.active) return; // Break point
-
-		c.onForSeconds(1000, 1.5, true);
 		
-		if(!RunsMenu.active) return; // Break point
 
-		MoveTank.onForCent(-500, -500, 200, true);
+		MoveTank.onForCent(-200, -200, 90, true);
 
-		if(!RunsMenu.active) return; // Break point
+		
+		// Rotate medium motor and move.
+		c.onForSeconds(200, 0.5, true);
+		
 
-		t.turnInSpot(23, 400);
+		MoveTank.onForCent(-250, -250, 60, true);
 
-		if(!RunsMenu.active) return; // Break point
+		
 
-		MoveTank.onForCent(-2000, -2000, 350, true);
+		// Move to throw the meteorids.
+		t.turnInSpot(25, -100);
+		
+		MoveTank.onForCent(-250, -250, 370, true);
+		
+		t.turnInSpot(25, 100);
+		
+		MoveTank.onForCent(-250, -250, 290, true);
+		
+		t.turnInSpot(16, 100);
+		
+		
+		// Throw balls.
+		b.onForSeconds(1600, 0.23, true);
+		
+		MoveTank.onForCent(200, 200, 350, true);
+		
+		b.onForSeconds(1000, 0.7, true);
 
-		if(!RunsMenu.active) return; // Break point
+		MoveTank.onForCent(-200, -200, 200, true);
+		
+		t.turnInSpot(5, 100);
+		
+		b.onForSeconds(-3000, 2, true);
 
-		t.turnInSpot(110, -300);
+		
 
-		if(!RunsMenu.active) return; // Break point
+		// Coming back to base.
 
-		MoveTank.onForCent(900, 900, 800, true);
+		t.turnInSpot(67, -300);
 
-		if(!RunsMenu.active) return; // Break point
+		
 
-		t.turnInSpot(80, 300);
+		MoveTank.onForCent(900, 900, 850, true);
 
-		if(!RunsMenu.active) return; // Break point
+		
 
-		MoveTank.onForCent(900, 900, 1400, true);
+		t.turnInSpot(75, 300);
 
-		if(!RunsMenu.active) return; // Break point
+		
+
+		MoveTank.onForCent(900, 900, 1600, true);
+
+		
 
 		runnable.runFinished();
 	}

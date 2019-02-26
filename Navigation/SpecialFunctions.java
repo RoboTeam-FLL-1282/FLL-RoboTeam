@@ -64,44 +64,44 @@ public class SpecialFunctions {
 
 		// Move robot forwards and align on the white line.
 		Accelerator.accelerate(0.5, -150, -250, false);
-		if(!RunsMenu.active) return pid; // Break point
+
 		Sound.beep(100);
 		pid.startPID();
 		Wait.time(700);
 		pid.stopPID();
 		Sound.beep(100);
-		if(!RunsMenu.active) return pid; // Break point
+
 		
 		// Align on white line and then turn x degrees
 		WhiteLineAlignment.align(-250);
-		if(!RunsMenu.active) return pid; // Break point
+
 		Sound.beep(100);
 		GyroPID.g.reset();
 
 		//Turn and move to the T.
 		Traveler t = new Traveler(0, 0, 12, 8.2);
 		t.turnInSpot(70, -100);
-		if(!RunsMenu.active) return pid; // Break point
+
 		pid.setTarget(GyroPID.g.angle());
 		pid.startPID();
-		if(!RunsMenu.active) return pid; // Break point
+
 		Wait.time(1000);
 		pid.stopPID();
-		if(!RunsMenu.active) return pid; // Break point
+
 		
 		// Find line, move forwards and then align backwards.
 		BlackLineAlignment.find(Sides.LEFT, -250);
-		if(!RunsMenu.active) return pid; // Break point
+
 		MoveTank.onForCent(-250, -250, 200, true);
-		if(!RunsMenu.active) return pid; // Break point
+
 		t.turnInSpot(42, -100);
-		if(!RunsMenu.active) return pid; // Break point
+
 		BlackLineAlignment.find(-200);
-		if(!RunsMenu.active) return pid; // Break point
+
 		MoveTank.onForCent(-100, -100, 150, true);
-		if(!RunsMenu.active) return pid; // Break point
+
 		BlackLineAlignment.align(100);
-		if(!RunsMenu.active) return pid; // Break point
+
  
 		return pid;
 	}
@@ -118,46 +118,46 @@ public class SpecialFunctions {
 
 		// Move robot forwards and align on the white line.
 		Accelerator.accelerate(0.5, -150, -250, false);
-		if(!RunsMenu.active) return pid; // Break point
+
 		Sound.beep(100);
 		pid.startPID();
-		if(!RunsMenu.active) return pid; // Break point
+
 		Wait.time(500);
 		pid.stopPID();
-		if(!RunsMenu.active) return pid; // Break point
+
 		Sound.beep(100);
 
 		// Align on white line and then turn x degrees
 		//		Display.resetScreen();
 		WhiteLineAlignment.align(-250);
-		if(!RunsMenu.active) return pid; // Break point
+
 		Sound.beep(100);
 		GyroPID.g.reset();
 	
 		// Turn and move to the T.
 		Traveler t = new Traveler(0, 0, 12, 8.2);
 		t.turnInSpot(70, -100);
-		if(!RunsMenu.active) return pid; // Break point
+
 		pid.setTarget(GyroPID.g.angle());
 		pid.startPID();
-		if(!RunsMenu.active) return pid; // Break point
+
 		Wait.time(1000);
 		pid.stopPID();
-		if(!RunsMenu.active) return pid; // Break point
+
 		
 		// Find black line, move forwards and align on the line.
 		BlackLineAlignment.find(Sides.LEFT, -250);
-		if(!RunsMenu.active) return pid; // Break point
+
 		MoveTank.onForCent(-250, -250, 200, true);
-		if(!RunsMenu.active) return pid; // Break point
+
 		t.turnInSpot(42, -100);
-		if(!RunsMenu.active) return pid; // Break point
+
 		BlackLineAlignment.find(-200);
-		if(!RunsMenu.active) return pid; // Break point
+
 		MoveTank.onForCent(-100, -100, 100, true);
-		if(!RunsMenu.active) return pid; // Break point
+
 		BlackLineAlignment.align(100);
-		if(!RunsMenu.active) return pid; // Break point
+
  
 		return pid;
 	}
@@ -172,7 +172,7 @@ public class SpecialFunctions {
 		GyroPID.g.recalibrate();
 
 		// Move robot forwards and align on the white line.
-		if(!RunsMenu.active) return pid; // Break point
+
 		Sound.beep(100);
 		pid.startPID();
 		Wait.time(1500);
@@ -180,7 +180,7 @@ public class SpecialFunctions {
 		Wait.time(800);
 		pid.stopPID();
 		Sound.beep(100);
-		if(!RunsMenu.active) return pid; // Break point
+
 		
 		Wait.time(500);
 		
@@ -192,34 +192,35 @@ public class SpecialFunctions {
 		WhiteLineAlignment.find(200);
 		MoveTank.onForCent(200, 200, 200, false);
 		
-		if(!RunsMenu.active) return pid; // Break point
+
 		Sound.beep(100);
 
 		//Turn and move to the T.
 		Traveler t = new Traveler(0, 0, 12, 8.2);
-		t.turnInSpot(32, -100); // changed from 35
-		if(!RunsMenu.active) return pid; // Break point
+		t.turnInSpot(33, -100); // changed from 35
+
 		pid.setTarget(GyroPID.g.angle());
 		pid.setBaseSpeed(-450);
 		pid.startPID();
-		if(!RunsMenu.active) return pid; // Break point
-		Wait.time(1300);
+
+		Wait.time(1000);
 		pid.stopPID();
-		if(!RunsMenu.active) return pid; // Break point
+		t.turnInSpot(20, -100);
+
 		
 		// Find line, move forwards and then align backwards.
 		BlackLineAlignment.find(Sides.LEFT, -150);
-		if(!RunsMenu.active) return pid; // Break point
+
 		MoveTank.onForCent(-250, -250, 200, true);
-		if(!RunsMenu.active) return pid; // Break point
+
 		t.turnInSpot(48, -200);
-		if(!RunsMenu.active) return pid; // Break point
+
 		BlackLineAlignment.find(Sides.LEFT, -200); // Changed
-		if(!RunsMenu.active) return pid; // Break point
+
 		MoveTank.onForCent(-200, -200, 70, true);
-		if(!RunsMenu.active) return pid; // Break point
+
 		BlackLineAlignment.align(100);
-		if(!RunsMenu.active) return pid; // Break point
+
  
 		return pid;
 	}
